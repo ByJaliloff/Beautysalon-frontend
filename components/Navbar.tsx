@@ -57,10 +57,8 @@ export function Navbar() {
 
     return (
         <>
-            {/* Arxa fonu tam təyin etdik: Açığ rejimdə ağ/95%, Qaranlıq rejimdə tünd/95% */}
             <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-md shadow-sm">
                 <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-                    {/* Logo */}
                     <div className="flex items-center gap-2">
                         <Link href="/" className="flex items-center space-x-2">
                             <span className="text-xl font-bold tracking-tight text-primary-600 dark:text-primary-400">
@@ -69,13 +67,11 @@ export function Navbar() {
                         </Link>
                     </div>
 
-                    {/* Desktop Navigation */}
                     <nav className="hidden md:flex items-center gap-8">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                /* Yazı rəngini xüsusi təyin etdik ki fonla heç vaxt qarışmasın */
                                 className="text-sm font-semibold text-foreground/80 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                             >
                                 {link.name}
@@ -83,45 +79,43 @@ export function Navbar() {
                         ))}
                     </nav>
 
-                    {/* Desktop Actions */}
                     <div className="hidden md:flex items-center gap-4">
                         <ThemeToggle />
 
                         {isLoggedIn ? (
-                            <div className="flex items-center gap-3 border-l border-zinc-200 pl-4 dark:border-zinc-800">
+                            <div className="flex items-center gap-3 border-l border-border pl-4">
                                 {userRole === "admin" ? (
                                     <Link href="/admin">
-                                        <Button variant="ghost" size="sm" className="text-primary-600 gap-2">
+                                        <Button variant="primary" size="sm" className="font-bold shadow-sm gap-2">
                                             <ShieldCheck className="w-4 h-4" />
                                             Admin Panel
                                         </Button>
                                     </Link>
                                 ) : (
                                     <Link href="/dashboard">
-                                        <Button variant="ghost" size="sm" className="text-primary-600 gap-2">
+                                        <Button variant="primary" size="sm" className="font-bold shadow-sm gap-2">
                                             <LayoutDashboard className="w-4 h-4" />
                                             Dashboard
                                         </Button>
                                     </Link>
                                 )}
-                                <Button size="sm" variant="outline" className="gap-2 border-red-200 text-red-600 hover:bg-red-50 dark:border-red-900/50 dark:text-red-400 dark:hover:bg-red-900/20" onClick={handleLogout}>
+                                <Button variant="secondary" size="sm" className="font-bold text-red-600 dark:text-red-400 gap-2" onClick={handleLogout}>
                                     <LogOut className="w-4 h-4" />
                                     Çıxış
                                 </Button>
                             </div>
                         ) : (
-                            <div className="flex items-center gap-2 border-l border-zinc-200 pl-4 dark:border-zinc-800">
-                                <Button variant="ghost" size="sm" className="font-semibold text-zinc-900 dark:text-zinc-100 hover:bg-black/5 dark:hover:bg-white/5" onClick={() => openAuth("login")}>
+                            <div className="flex items-center gap-2 border-l border-border pl-4">
+                                <Button variant="secondary" size="sm" className="font-bold" onClick={() => openAuth("login")}>
                                     Giriş
                                 </Button>
-                                <Button size="sm" className="bg-primary-600 hover:bg-primary-700 text-white" onClick={() => openAuth("register")}>
+                                <Button variant="primary" size="sm" className="font-bold shadow-sm" onClick={() => openAuth("register")}>
                                     Qeydiyyat
                                 </Button>
                             </div>
                         )}
                     </div>
 
-                    {/* Mobile menu button */}
                     <div className="flex items-center gap-4 md:hidden">
                         <ThemeToggle />
                         <Button
@@ -135,7 +129,6 @@ export function Navbar() {
                     </div>
                 </div>
 
-                {/* Mobile Menu */}
                 {isMobileMenuOpen && (
                     <div className="md:hidden border-b border-border bg-background px-4 py-4 shadow-lg">
                         <nav className="flex flex-col space-y-4">
@@ -154,29 +147,32 @@ export function Navbar() {
                                     <>
                                         {userRole === "admin" ? (
                                             <Link href="/admin" onClick={() => setIsMobileMenuOpen(false)}>
-                                                <Button variant="outline" className="w-full justify-center gap-2 text-primary-600 border-primary-200">
+                                                <Button variant="primary" className="w-full justify-center font-bold shadow-sm gap-2">
                                                     <ShieldCheck className="w-4 h-4" /> Admin Panel
                                                 </Button>
                                             </Link>
                                         ) : (
                                             <Link href="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
-                                                <Button variant="outline" className="w-full justify-center gap-2 text-primary-600 border-primary-200">
+                                                {/* DÜZƏLİŞ: Mobil Dashboard düyməsi */}
+                                                <Button variant="primary" className="w-full justify-center font-bold shadow-sm gap-2">
                                                     <LayoutDashboard className="w-4 h-4" /> Dashboard
                                                 </Button>
                                             </Link>
                                         )}
-                                        <Button className="w-full justify-center gap-2 bg-red-500 hover:bg-red-600 text-white" onClick={handleLogout}>
+                                        <Button variant="secondary" className="w-full justify-center font-bold text-red-600 dark:text-red-400 gap-2" onClick={handleLogout}>
                                             <LogOut className="w-4 h-4" /> Çıxış
                                         </Button>
                                     </>
                                 ) : (
                                     <>
-                                        <Button variant="outline" className="w-full justify-center font-semibold text-zinc-900 dark:text-zinc-100 border-zinc-200 dark:border-zinc-800 hover:bg-black/5 dark:hover:bg-white/5" onClick={() => openAuth("login")}>
-                                            Giriş
-                                        </Button>
-                                        <Button className="w-full justify-center bg-primary-600 text-white hover:bg-primary-700" onClick={() => openAuth("register")}>
-                                            Qeydiyyat
-                                        </Button>
+                                        <>
+                                            <Button variant="secondary" className="w-full justify-center font-bold" onClick={() => openAuth("login")}>
+                                                Giriş
+                                            </Button>
+                                            <Button variant="primary" className="w-full justify-center font-bold shadow-sm" onClick={() => openAuth("register")}>
+                                                Qeydiyyat
+                                            </Button>
+                                        </>
                                     </>
                                 )}
                             </div>

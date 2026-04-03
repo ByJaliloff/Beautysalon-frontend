@@ -4,7 +4,7 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import { Service } from "./types";
 import { Clock, CreditCard, Loader2 } from "lucide-react";
-import { api } from "@/lib/api"; // API yolunun düzgünlüyünü yoxlayın
+import { api } from "@/lib/api"; 
 import { useState, useEffect } from "react";
 
 interface Step1ServiceProps {
@@ -17,14 +17,12 @@ export function Step1Service({ selectedService, onSelect }: Step1ServiceProps) {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
-    // Backend-dən xidmətləri çəkirik
 useEffect(() => {
     const fetchServices = async () => {
         try {
             setLoading(true);
             const response = await api.get("/services");
             
-            // DİQQƏT: Backend-dən gələn struktur 'response.data.data' şəklindədir
             if (response.data && Array.isArray(response.data.data)) {
                 setServices(response.data.data);
             } else if (Array.isArray(response.data)) {
@@ -42,7 +40,6 @@ useEffect(() => {
     fetchServices();
 }, []);
 
-    // Yüklənmə halı
     if (loading) {
         return (
             <div className="flex flex-col items-center justify-center py-20 gap-4">
@@ -52,7 +49,6 @@ useEffect(() => {
         );
     }
 
-    // Xəta halı
     if (error) {
         return (
             <div className="text-center py-20 text-red-500">

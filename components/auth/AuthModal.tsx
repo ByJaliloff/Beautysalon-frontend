@@ -16,8 +16,7 @@ type AuthModalProps = {
 
 export function AuthModal({ isOpen, onClose, initialView = "login" }: AuthModalProps) {
     const [view, setView] = React.useState<"login" | "register">(initialView);
-    
-    // Form məlumatlarını tutmaq üçün state-lər
+
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [fullName, setFullName] = React.useState("");
@@ -29,15 +28,12 @@ export function AuthModal({ isOpen, onClose, initialView = "login" }: AuthModalP
         }
     }, [isOpen, initialView]);
 
-    // --- GİRİŞ FUNKSİYASI ---
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         try {
             const response = await api.post("/auth/login", { email, password });
             
-            // DÜZƏLİŞ 1: Backend 'token' qaytarır, 'access_token' yox.
-            // Həmçinin api.ts faylımız response.json() etdiyi üçün məlumat birbaşa response içindədir.
             const token = response.token || response.data?.token;
             
             if (token) {
@@ -59,13 +55,11 @@ export function AuthModal({ isOpen, onClose, initialView = "login" }: AuthModalP
         }
     };
 
-    // --- QEYDİYYAT FUNKSİYASI ---
     const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         
         try {
-            // DÜZƏLİŞ 2: Backend bizdən tam olaraq 'name', 'email' və 'password' gözləyir.
             await api.post("/auth/register", {
                 name: fullName,
                 email,
@@ -76,7 +70,6 @@ export function AuthModal({ isOpen, onClose, initialView = "login" }: AuthModalP
                 description: "Qeydiyyat uğurla tamamlandı. İndi giriş edə bilərsiniz.",
             });
             setView("login");
-            // Qeydiyyatdan sonra formu təmizləyək
             setPassword("");
         } catch (error: any) {
             toast.error("Xəta baş verdi", {

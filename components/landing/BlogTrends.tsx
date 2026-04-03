@@ -9,7 +9,7 @@ export function BlogTrends() {
             title: "2026-cı ilin Ən Trend Saç Rəngləri",
             date: "12 Mart 2026",
             category: "Hair",
-            img: "https://images.unsplash.com/photo-1595476108010-b4d1f10d5e43?q=80&w=2600&auto=format&fit=crop"
+            img:  "https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=2600&auto=format&fit=crop"
         },
         {
             title: "Üz Dərisinə Düzgün Qulluq Sirri",
@@ -21,7 +21,7 @@ export function BlogTrends() {
             title: "Mükəmməl Gəlin Makiyajı Necə Olmalıdır?",
             date: "28 Fevral 2026",
             category: "Makeup",
-            img: "https://images.unsplash.com/photo-1512496015851-a1fbbfc614cc?q=80&w=2666&auto=format&fit=crop"
+            img: "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?q=80&w=2574&auto=format&fit=crop"
         },
     ];
 

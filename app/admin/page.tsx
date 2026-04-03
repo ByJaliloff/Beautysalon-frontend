@@ -12,7 +12,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 type TabType = "overview" | "services" | "workers";
 
-// Qrafik üçün statik məlumatlar (Gələcəkdə Backend-dən gələcək)
+
 const data7Days = [
     { name: "B.e", revenue: 450 },
     { name: "Ç.a", revenue: 700 },
@@ -151,11 +151,9 @@ export default function AdminDashboard() {
                     </div>
                 </div>
 
-                {/* --- TAB CONTENT VIEWS --- */}
                 <div className="w-full flex-1 relative">
                     <AnimatePresence mode="wait">
                         
-                        {/* 1. ÜMUMİ BAXIŞ TABI */}
                         {activeTab === "overview" && (
                             <motion.div
                                 key="overview"
@@ -165,7 +163,6 @@ export default function AdminDashboard() {
                                 transition={{ duration: 0.3, ease: "easeOut" }}
                                 className="mt-8 w-full"
                             >
-                                {/* Antigravity Stat Cards */}
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto mb-8">
                                     <motion.div
                                         whileHover={{ y: -5 }}
@@ -196,7 +193,6 @@ export default function AdminDashboard() {
                                     </motion.div>
                                 </div>
 
-                                {/* Revenue Chart */}
                                 <motion.div
                                     whileHover={{ y: -5 }}
                                     className="bg-background/80 backdrop-blur-xl border border-white/60 dark:border-white/10 p-6 sm:p-8 rounded-[2rem] shadow-sm relative overflow-hidden group hover:shadow-xl transition-all duration-500 max-w-4xl mx-auto"
@@ -263,7 +259,6 @@ export default function AdminDashboard() {
                             </motion.div>
                         )}
 
-                        {/* 2. XİDMƏTLƏR TABI */}
                         {activeTab === "services" && (
                             <motion.div
                                 key="services"
@@ -277,7 +272,6 @@ export default function AdminDashboard() {
                             </motion.div>
                         )}
 
-                        {/* 3. İŞÇİLƏR TABI */}
                         {activeTab === "workers" && (
                             <motion.div
                                 key="workers"

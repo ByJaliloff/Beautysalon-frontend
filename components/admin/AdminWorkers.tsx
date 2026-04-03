@@ -9,9 +9,9 @@ import { toast } from "sonner";
 export type Worker = {
     id: number;
     name: string;
-    email?: string; // Bəzən birbaşa provider üzərində
+    email?: string; 
     title?: string;
-    user?: { email: string }; // Və ya user obyekti daxilində
+    user?: { email: string }; 
 };
 
 export function AdminWorkers() {
@@ -76,7 +76,7 @@ export function AdminWorkers() {
                 email: formData.email,
             };
             if (!editingWorker) {
-                payload.password = formData.password; // Yalnız əlavə edəndə və ya dəyişəndə tələb olunur
+                payload.password = formData.password; 
             } else if (formData.password) {
                 payload.password = formData.password;
             }
@@ -243,7 +243,6 @@ export function AdminWorkers() {
                 </div>
             )}
 
-            {/* Complete Add / Edit Worker Modal */}
             <AnimatePresence>
                 {isModalOpen && (
                     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">

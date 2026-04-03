@@ -31,7 +31,7 @@ export function FaqAccordion() {
     };
 
     return (
-        <section id="faq" className="py-24 bg-background">
+        <section id="faq" className="py-24 bg-background w-full">
             <div className="container mx-auto px-4 max-w-3xl sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
@@ -59,9 +59,11 @@ export function FaqAccordion() {
                                     <span className="text-lg font-semibold text-foreground pr-8">
                                         {faq.q}
                                     </span>
-                                    <div className={`flex shrink-0 items-center justify-center rounded-full p-2 transition-colors ${isOpen ? 'bg-primary-50 text-primary-600 dark:bg-primary-900/30' : 'bg-zinc-100 text-zinc-500 dark:bg-zinc-800'}`}>
+                                    
+                                    <div className={`flex shrink-0 items-center justify-center rounded-full p-2 transition-all duration-300 bg-[#352514] dark:bg-[#332414] ${isOpen ? 'text-primary-500 scale-110 shadow-md' : 'text-[#EAE7E2]'}`}>
                                         {isOpen ? <Minus size={20} /> : <Plus size={20} />}
                                     </div>
+                                    
                                 </button>
                                 <AnimatePresence initial={false}>
                                     {isOpen && (

@@ -23,12 +23,11 @@ function NumberTicker({ value, prefix = "" }: { value: number, prefix?: string }
     useEffect(() => {
         const duration = 800;
         const start = performance.now();
-        const startValue = 0; // Always animate from 0 for the "wow" effect when switching tabs
+        const startValue = 0; 
 
         const update = () => {
             const now = performance.now();
             const progress = Math.min((now - start) / duration, 1);
-            // easeOutExpo for smoother deceleration
             const easeOutExpo = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
             setDisplay(Math.floor(startValue + (value - startValue) * easeOutExpo));
 
@@ -68,7 +67,6 @@ export function WorkerStatsModal({ isOpen, onClose }: WorkerStatsModalProps) {
         <AnimatePresence>
             {isOpen && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
-                    {/* Backdrop */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -78,7 +76,6 @@ export function WorkerStatsModal({ isOpen, onClose }: WorkerStatsModalProps) {
                         onClick={onClose}
                     />
 
-                    {/* Modal Content */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.85, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -86,10 +83,8 @@ export function WorkerStatsModal({ isOpen, onClose }: WorkerStatsModalProps) {
                         transition={{ type: "spring", damping: 25, stiffness: 350, bounce: 0.3 }}
                         className="relative w-full max-w-lg bg-black/80 border border-white/10 rounded-[2rem] p-8 shadow-[0_0_80px_rgba(0,0,0,0.8)] overflow-hidden"
                     >
-                        {/* Ambient inner glow */}
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-32 bg-white/5 rounded-full blur-[100px] pointer-events-none" />
 
-                        {/* Header */}
                         <div className="flex items-center justify-between mb-8 relative z-10">
                             <div>
                                 <h2 className="text-2xl font-bold text-white flex items-center gap-2">
@@ -106,7 +101,6 @@ export function WorkerStatsModal({ isOpen, onClose }: WorkerStatsModalProps) {
                             </button>
                         </div>
 
-                        {/* Segmented Control */}
                         <div className="relative flex p-1 mb-10 bg-black/60 border border-white/10 rounded-2xl z-10 shadow-inner">
                             {tabs.map((tab) => {
                                 const isActive = activeTab === tab.id;
@@ -130,9 +124,7 @@ export function WorkerStatsModal({ isOpen, onClose }: WorkerStatsModalProps) {
                             })}
                         </div>
 
-                        {/* Metrics Grid */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 relative z-10">
-                            {/* Revenue Card */}
                             <motion.div
                                 key={`revenue-${activeTab}`} // Force re-render of glow slightly if wanted, but better not keying
                                 className="relative overflow-hidden bg-black/40 border border-white/5 rounded-3xl p-6 group transition-colors hover:bg-white/[0.02]"
@@ -157,7 +149,6 @@ export function WorkerStatsModal({ isOpen, onClose }: WorkerStatsModalProps) {
                                 </div>
                             </motion.div>
 
-                            {/* Jobs Card */}
                             <motion.div
                                 className="relative overflow-hidden bg-black/40 border border-white/5 rounded-3xl p-6 group transition-colors hover:bg-white/[0.02]"
                             >

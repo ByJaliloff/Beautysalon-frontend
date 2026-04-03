@@ -33,7 +33,6 @@ export function Step2Professional({ selectedProfessional, onSelect }: Step2Profe
                     providersList = response;
                 }
 
-                // Average Rating-ə görə çoxdan aza doğru sıralayırıq
                 providersList.sort((a, b) => {
                     const ratingA = a.averageRating ? Number(a.averageRating) : 0;
                     const ratingB = b.averageRating ? Number(b.averageRating) : 0;
@@ -101,10 +100,8 @@ export function Step2Professional({ selectedProfessional, onSelect }: Step2Profe
                                     : "bg-card border-border hover:shadow-xl hover:border-white/20 dark:hover:bg-white/[0.04]"}
                             `}
                         >
-                            {/* Antigravity glow effect on hover */}
                             <div className="absolute inset-0 bg-gradient-to-tr from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                            {/* Top Rated Badge */}
                             {isTopRated && (
                                 <div className="absolute top-0 right-0 z-20">
                                     <div className="bg-gradient-to-r from-yellow-400 to-amber-500 px-3 py-1.5 rounded-bl-3xl rounded-tr-[2rem] text-[10px] font-black text-black uppercase tracking-wider shadow-[0_0_20px_rgba(251,191,36,0.6)] flex items-center gap-1.5 border-b border-l border-amber-300/50">
@@ -144,7 +141,6 @@ export function Step2Professional({ selectedProfessional, onSelect }: Step2Profe
                                         {prof.title || "Usta"}
                                     </p>
 
-                                    {/* Rating Display */}
                                     <div className="flex items-center gap-1.5 mt-2.5">
                                         <Star className={`w-4 h-4 ${rating > 0 ? "fill-yellow-500 text-yellow-500 drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" : "text-zinc-300 dark:text-zinc-600"}`} />
                                         <span className={`text-[13px] font-black ${rating > 0 ? "text-yellow-600 dark:text-yellow-500" : "text-zinc-400 dark:text-zinc-500"}`}>

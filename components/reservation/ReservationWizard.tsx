@@ -8,8 +8,8 @@ import { Step2Professional } from "./Step2Professional";
 import { Step3DateTime } from "./Step3DateTime";
 import { Step4Confirm } from "./Step4Confirm";
 import { Button } from "../ui/Button";
-import { api } from "@/lib/api"; // Backend-ə qoşulmaq üçün əlavə edildi
-import { format } from "date-fns"; // Tarixi formatlamaq üçün əlavə edildi
+import { api } from "@/lib/api";
+import { format } from "date-fns";
 
 const STEPS = [
     { id: 1, name: "Xidmət" },
@@ -37,18 +37,14 @@ export function ReservationWizard() {
         setReservation((prev) => ({ ...prev, [key]: value }));
     };
 
-    // DÜZƏLİŞ: Real Backend-ə sorğu (POST /appointments)
     const handleConfirm = async () => {
         setIsSubmitting(true);
-        
         try {
             if (!reservation.professional || !reservation.service || !reservation.date || !reservation.time) {
                 throw new Error("Bütün məlumatlar tam doldurulmayıb.");
             }
 
             const formattedDate = format(reservation.date, 'yyyy-MM-dd');
-
-            // Sizin yazdığınız NestJS backend API-na sorğu atırıq
             await api.post("/appointments", {
                 workerId: reservation.professional.id,
                 serviceId: reservation.service.id,
@@ -56,11 +52,10 @@ export function ReservationWizard() {
                 startTime: reservation.time
             });
 
-            setIsSuccess(true); // Uğurlu olduqda təbrik ekranı açılır
+            setIsSuccess(true);
         } catch (error: any) {
             console.error("Rezervasiya xətası:", error);
-            // Əgər istifadəçi giriş (login) etməyibsə və ya backend xəta verərsə ekranda göstər
-            alert(error.message || "Rezervasiya zamanı xəta baş verdi. Zəhmət olmasa sistemə giriş etdiyinizdən əmin olun.");
+            alert(error.message || "Xəta baş verdi. Zəhmət olmasa daxil olduğunuzdan əmin olun.");
         } finally {
             setIsSubmitting(false);
         }
@@ -68,30 +63,26 @@ export function ReservationWizard() {
 
     const isNextDisabled = () => {
         switch (currentStep) {
-            case 1:
-                return !reservation.service;
-            case 2:
-                return !reservation.professional;
-            case 3:
-                return !reservation.date || !reservation.time;
-            default:
-                return false;
+            case 1: return !reservation.service;
+            case 2: return !reservation.professional;
+            case 3: return !reservation.date || !reservation.time;
+            default: return false;
         }
     };
 
     if (isSuccess) {
         return (
-            <div className="flex min-h-[50vh] flex-col items-center justify-center text-center gap-6 animate-in fade-in duration-500">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-500">
-                    <svg className="h-10 w-10 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <div className="flex min-h-[50vh] flex-col items-center justify-center text-center gap-6 animate-in fade-in duration-500 bg-background text-foreground">
+                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-green-500 text-white shadow-lg shadow-green-500/20">
+                    <svg className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                 </div>
-                <h2 className="text-3xl font-bold text-foreground">Təbriklər!</h2>
-                <p className="text-lg text-foreground/70 max-w-md">
-                    Sizin rezervasiyanız uğurla qeydə alındı. Tezliklə təsdiq mesajı alacaqsınız.
+                <h2 className="text-4xl font-black tracking-tight">Təbriklər!</h2>
+                <p className="text-lg opacity-70 max-w-md font-medium">
+                    Rezervasiyanız uğurla qeydə alındı. Tezliklə təsdiq mesajı alacaqsınız.
                 </p>
-                <Button onClick={() => window.location.href = "/"} className="mt-4">
+                <Button onClick={() => window.location.href = "/"} variant="primary" size="lg" className="mt-4 font-bold">
                     Ana səhifəyə qayıt
                 </Button>
             </div>
@@ -99,13 +90,15 @@ export function ReservationWizard() {
     }
 
     return (
-        <div className="w-full max-w-5xl mx-auto py-8">
-            {/* Stepper Header */}
-            <div className="mb-12">
-                <div className="flex items-center justify-between relative">
-                    <div className="absolute left-0 top-1/2 -z-10 h-0.5 w-full -translate-y-1/2 bg-border" />
+        <div className="w-full max-w-5xl mx-auto py-12 px-4 sm:px-6">
+
+            <div className="mb-16">
+                <div className="flex items-center justify-between relative px-2">
+
+                    <div className="absolute left-0 top-5 -z-10 h-1 w-full -translate-y-1/2 bg-zinc-200 dark:bg-zinc-800 rounded-full" />
+
                     <div
-                        className="absolute left-0 top-1/2 -z-10 h-0.5 -translate-y-1/2 bg-primary-500 transition-all duration-500 ease-in-out"
+                        className="absolute left-0 top-5 -z-10 h-1 -translate-y-1/2 bg-primary-600 transition-all duration-700 ease-in-out rounded-full shadow-[0_0_10px_rgba(197,160,89,0.4)]"
                         style={{ width: `${((currentStep - 1) / 3) * 100}%` }}
                     />
 
@@ -114,24 +107,24 @@ export function ReservationWizard() {
                         const isCompleted = currentStep > step.id;
 
                         return (
-                            <div key={step.id} className="flex flex-col items-center gap-2 relative z-10">
+                            <div key={step.id} className="flex flex-col items-center gap-3 relative z-10">
                                 <div
                                     className={`
-                                        flex h-10 w-10 items-center justify-center rounded-full border-2 text-sm font-semibold transition-colors duration-300
-                                        ${isActive ? 'border-primary-500 bg-background text-primary-600 dark:text-primary-500' : ''}
-                                        ${isCompleted ? 'border-primary-500 bg-primary-500 text-white' : ''}
-                                        ${!isActive && !isCompleted ? 'border-border bg-background text-foreground/40' : ''}
+                                        flex h-10 w-10 items-center justify-center rounded-full border-2 text-sm font-bold transition-all duration-500
+                                        ${isActive ? 'border-primary-600 bg-white text-primary-600 scale-125 shadow-md' : ''}
+                                        ${isCompleted ? 'border-primary-600 bg-primary-600 text-white' : ''}
+                                        ${!isActive && !isCompleted ? 'border-zinc-300 bg-white text-zinc-400 dark:border-zinc-700 dark:bg-zinc-900' : ''}
                                     `}
                                 >
                                     {isCompleted ? (
-                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={4}>
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                         </svg>
                                     ) : (
                                         step.id
                                     )}
                                 </div>
-                                <span className={`text-xs font-medium md:text-sm absolute -bottom-6 whitespace-nowrap ${isActive || isCompleted ? 'text-foreground' : 'text-foreground/40'}`}>
+                                <span className={`text-xs font-black uppercase tracking-tighter md:text-xs absolute -bottom-8 whitespace-nowrap transition-colors duration-300 ${isActive || isCompleted ? 'text-foreground' : 'text-foreground/30'}`}>
                                     {step.name}
                                 </span>
                             </div>
@@ -140,15 +133,14 @@ export function ReservationWizard() {
                 </div>
             </div>
 
-            {/* Main Content Area */}
-            <div className="min-h-[400px] py-4">
+            <div className="min-h-[450px] py-6 bg-card/30 backdrop-blur-sm rounded-3xl border border-border/50 p-6 shadow-sm">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentStep}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -20 }}
-                        transition={{ duration: 0.3 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.4 }}
                     >
                         {currentStep === 1 && (
                             <Step1Service
@@ -164,7 +156,7 @@ export function ReservationWizard() {
                         )}
                         {currentStep === 3 && (
                             <Step3DateTime
-                                selectedProfessional={reservation.professional} // DÜZƏLİŞ: Bu sətir əlavə edildi
+                                selectedProfessional={reservation.professional}
                                 selectedDate={reservation.date}
                                 selectedTime={reservation.time}
                                 onSelectDate={(d) => updateReservation("date", d)}
@@ -182,23 +174,24 @@ export function ReservationWizard() {
                 </AnimatePresence>
             </div>
 
-            {/* Navigation Footer */}
-            <div className="mt-8 flex items-center justify-between border-t border-border/60 pt-6">
+            <div className="mt-12 flex items-center justify-between border-t border-border pt-8">
                 <Button
-                    variant="outline"
+                    variant="secondary"
                     onClick={prevStep}
                     disabled={currentStep === 1 || isSubmitting}
-                    className={currentStep === 1 ? 'opacity-0 pointer-events-none' : ''}
+                    className={`font-bold px-8 ${currentStep === 1 ? 'opacity-0 pointer-events-none' : 'shadow-sm'}`}
                 >
-                    Geri
+                    ← Geri
                 </Button>
 
                 {currentStep < 4 && (
                     <Button
+                        variant="primary"
                         onClick={nextStep}
                         disabled={isNextDisabled()}
+                        className="font-bold px-8 shadow-lg shadow-primary-500/20"
                     >
-                        Növbəti addım
+                        Növbəti addım →
                     </Button>
                 )}
             </div>

@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/Button";
 export function HeroSection() {
     return (
         <section className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden w-full">
-            {/* Background Video/Image Placeholder */}
             <div className="absolute inset-0 -z-20 bg-zinc-900">
                 <div className="absolute inset-0 bg-black/40 z-10" />
                 <img

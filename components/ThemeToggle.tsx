@@ -25,7 +25,8 @@ export function ThemeToggle() {
         <Button
             variant="ghost"
             size="sm"
-            className="relative w-10 h-10 p-0 rounded-full overflow-hidden flex items-center justify-center"
+
+            className="relative w-10 h-10 p-0 rounded-full overflow-hidden flex items-center justify-center group hover:bg-[#352514] dark:hover:bg-[#332414] transition-all duration-300"
             onClick={() => setTheme(isDark ? "light" : "dark")}
         >
             <AnimatePresence mode="wait" initial={false}>
@@ -38,9 +39,11 @@ export function ThemeToggle() {
                     className="absolute inset-0 flex items-center justify-center"
                 >
                     {isDark ? (
-                        <Sun className="h-6 w-6 text-yellow-500" />
+                      
+                        <Sun className="h-6 w-6 text-primary-500 group-hover:scale-110 transition-transform" />
                     ) : (
-                        <Moon className="h-6 w-6 text-zinc-700" />
+                       
+                        <Moon className="h-6 w-6 text-zinc-700 group-hover:text-[#EAE7E2] group-hover:scale-110 transition-all duration-300" />
                     )}
                 </motion.div>
             </AnimatePresence>

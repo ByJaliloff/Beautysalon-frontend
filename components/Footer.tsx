@@ -8,7 +8,6 @@ export function Footer() {
         <footer className="border-t border-border/40 bg-card">
             <div className="container mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 gap-12 md:grid-cols-4 lg:grid-cols-5">
-                    {/* About Section */}
                     <div className="md:col-span-2 lg:col-span-2">
                         <h3 className="text-xl font-bold text-primary-600 dark:text-primary-500 mb-6">
                             Gözəllik Salonu
@@ -19,7 +18,6 @@ export function Footer() {
                         </p>
                     </div>
 
-                    {/* Useful Links */}
                     <div className="md:col-span-1">
                         <h3 className="text-base font-semibold tracking-wider text-foreground uppercase mb-6">
                             Faydalı Linklər
@@ -43,7 +41,6 @@ export function Footer() {
                         </ul>
                     </div>
 
-                    {/* Contact */}
                     <div className="md:col-span-1 lg:col-span-2">
                         <h3 className="text-base font-semibold tracking-wider text-foreground uppercase mb-6">
                             Əlaqə

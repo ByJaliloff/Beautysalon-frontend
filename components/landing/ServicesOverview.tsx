@@ -25,7 +25,6 @@ export function ServicesOverview() {
                     <div className="w-24 h-1 bg-primary-500 mx-auto mt-6 rounded-full" />
                 </div>
 
-                {/* Xidmətlər üçün Premium Grid/Kart Dizaynı */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {services.map((service, index) => (
                         <motion.div

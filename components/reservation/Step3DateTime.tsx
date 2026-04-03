@@ -128,7 +128,6 @@ export function Step3DateTime({
                     transition={{ duration: 0.4, ease: "easeOut" }}
                     className="relative overflow-hidden bg-background/50 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-3xl p-6 shadow-xl"
                 >
-                    {/* Subtle inner light reflection */}
                     <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
 
                     <div className="flex items-center justify-between mb-8 relative z-10">

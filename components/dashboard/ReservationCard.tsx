@@ -46,7 +46,6 @@ export function ReservationCard({ app, role, targetName, targetInitial, personLa
 
     const handleComplete = async () => {
         setIsCompleting(true);
-        // Simulate micro-interaction time
         setTimeout(async () => {
             try {
                 await api.patch(`/appointments/${app.id}/status`, { status: "COMPLETED" });
@@ -56,7 +55,7 @@ export function ReservationCard({ app, role, targetName, targetInitial, personLa
             } finally {
                 setIsCompleting(false);
             }
-        }, 600); // Wait for animation
+        }, 600);
     };
 
     const handleCancel = async () => {
@@ -96,11 +95,11 @@ export function ReservationCard({ app, role, targetName, targetInitial, personLa
         switch (status) {
             case 'PENDING':
             case 'CONFIRMED':
-                return <span className="flex items-center gap-1.5 text-yellow-500 bg-yellow-500/10 border border-yellow-500/20 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide"><Clock4 className="w-3.5 h-3.5" /> Gözləyir</span>;
+                return <span className="flex items-center gap-1.5 text-amber-600 bg-amber-500/10 border border-amber-500/20 px-3 py-1.5 rounded-full text-xs font-bold tracking-wide"><Clock4 className="w-3.5 h-3.5" /> Gözləyir</span>;
             case 'COMPLETED':
-                return <span className="flex items-center gap-1.5 text-green-500 bg-green-500/10 border border-green-500/20 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide"><CheckCircle className="w-3.5 h-3.5" /> Tamamlanıb</span>;
+                return <span className="flex items-center gap-1.5 text-green-600 bg-green-500/10 border border-green-500/20 px-3 py-1.5 rounded-full text-xs font-bold tracking-wide"><CheckCircle className="w-3.5 h-3.5" /> Tamamlanıb</span>;
             case 'CANCELED':
-                return <span className="flex items-center gap-1.5 text-red-500 bg-red-500/10 border border-red-500/20 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide"><XCircle className="w-3.5 h-3.5" /> Ləğv edilib</span>;
+                return <span className="flex items-center gap-1.5 text-red-600 bg-red-500/10 border border-red-500/20 px-3 py-1.5 rounded-full text-xs font-bold tracking-wide"><XCircle className="w-3.5 h-3.5" /> Ləğv edilib</span>;
             default:
                 return null;
         }
@@ -114,97 +113,93 @@ export function ReservationCard({ app, role, targetName, targetInitial, personLa
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            whileHover={{ y: -6, scale: 1.01 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            whileHover={{ y: -4 }}
+            className="relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-6 bg-card border border-border rounded-3xl shadow-sm hover:shadow-xl hover:border-primary-500/30 transition-all duration-500"
             onHoverStart={() => setIsHovered(true)}
             onHoverEnd={() => setIsHovered(false)}
-            className="relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-6 bg-card backdrop-blur-xl border border-border rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(255,255,255,0.02)] hover:shadow-2xl hover:border-border/80 transition-all duration-500 z-10"
         >
-            {/* Subtle inner light reflection */}
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 dark:via-white/10 to-transparent" />
-
-            {/* Confetti / Burst effect when completing */}
             <AnimatePresence>
                 {isCompleting && (
                     <motion.div
                         initial={{ opacity: 1, scale: 0 }}
                         animate={{ opacity: 0, scale: 2.5 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="absolute inset-0 bg-green-500/20 z-0 rounded-3xl"
+                        className="absolute inset-0 bg-green-500/10 z-0"
                     />
                 )}
             </AnimatePresence>
 
             <div className="flex items-start gap-5 relative z-10 w-full md:w-auto">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary-100 text-primary-600 dark:bg-primary-500/10 dark:text-primary-400 shrink-0 border border-primary-200 dark:border-primary-500/20 shadow-inner">
+
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#352514] text-primary-400 shrink-0 shadow-lg">
                     <Scissors className="h-6 w-6" />
                 </div>
                 <div className="flex flex-col">
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white tracking-tight">
+                    <h3 className="text-xl font-bold text-foreground tracking-tight">
                         {app.service?.name || "Bilinməyən Xidmət"}
                     </h3>
-                    <div className="flex flex-wrap items-center gap-3 mt-2 text-sm text-zinc-500 dark:text-zinc-400 font-medium">
-                        <span className="flex items-center gap-1.5 bg-zinc-100 dark:bg-zinc-800/50 px-2.5 py-1 rounded-md">
-                            <Calendar className="w-4 h-4 text-primary-500" />
+                    <div className="flex flex-wrap items-center gap-3 mt-2 text-sm font-bold">
+
+                        <span className="flex items-center gap-1.5 bg-white text-zinc-800 border border-zinc-200 px-3 py-1.5 rounded-lg shadow-sm dark:bg-zinc-800 dark:text-zinc-200 dark:border-none">
+                            <Calendar className="w-4 h-4 text-primary-600 dark:text-primary-500" />
                             {format(new Date(app.date), 'dd MMMM yyyy', { locale: az })}
                         </span>
-                        <span className="flex items-center gap-1.5 bg-zinc-100 dark:bg-zinc-800/50 px-2.5 py-1 rounded-md text-primary-600 dark:text-primary-400">
-                            <Clock className="w-4 h-4" />
+
+                        <span className="flex items-center gap-1.5 bg-white text-zinc-800 border border-zinc-200 px-3 py-1.5 rounded-lg shadow-sm dark:bg-zinc-800 dark:text-zinc-200 dark:border-none">
+                            <Clock className="w-4 h-4 text-primary-600 dark:text-primary-400" />
                             {app.startTime.substring(0, 5)} - {app.endTime.substring(0, 5)}
                         </span>
                     </div>
                 </div>
             </div>
 
-            <div className="flex flex-col md:items-end gap-4 w-full md:w-auto mt-4 md:mt-0 pt-4 md:pt-0 border-t md:border-t-0 border-zinc-200 dark:border-white/5 relative z-10">
+            <div className="flex flex-col md:items-end gap-4 w-full md:w-auto mt-2 md:mt-0 relative z-10">
                 <div className="flex items-center justify-between md:justify-end w-full gap-5">
 
-                    <div className="flex items-center gap-3 bg-white dark:bg-black/20 p-1.5 pr-4 rounded-full border border-zinc-200 dark:border-white/5 shadow-sm">
-                        <div className="w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center border border-zinc-300 dark:border-zinc-700">
-                            <span className="text-xs font-bold text-zinc-600 dark:text-zinc-300">
+                    <div className="flex items-center gap-3 bg-white border border-zinc-200 p-1.5 pr-4 rounded-full shadow-sm dark:bg-zinc-900 dark:border-white/5">
+                        <div className="w-9 h-9 rounded-full bg-[#352514] flex items-center justify-center border border-primary-500/20 shrink-0">
+                            <span className="text-xs font-bold text-primary-400">
                                 {targetInitial}
                             </span>
                         </div>
+
                         <div className="flex flex-col">
-                            <span className="text-[9px] uppercase text-zinc-400 dark:text-zinc-500 font-bold tracking-widest leading-none mb-0.5">
+                            <span className="text-[10px] uppercase text-[#85662F] dark:text-primary-500 font-black tracking-widest leading-none mb-1">
                                 {personLabel}
                             </span>
-                            <span className="text-sm font-semibold text-zinc-800 dark:text-zinc-200 leading-none">
+                            <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100 leading-none">
                                 {targetName}
                             </span>
                         </div>
                     </div>
 
                     {!isHovered || !isPending ? (
-                        <div className="flex items-center gap-3 transition-opacity duration-300">
+                        <div className="flex items-center gap-3">
                             {getStatusBadge(safeStatus)}
                             {showRateButton && (
                                 <button
                                     onClick={() => setIsReviewModalOpen(true)}
-                                    className="px-3 py-1.5 flex items-center gap-1.5 text-xs font-semibold rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 hover:bg-indigo-500 hover:text-white dark:hover:text-white transition-all shadow-sm"
+                                    className="px-4 py-2 flex items-center gap-2 text-xs font-bold rounded-full bg-primary-600 text-white hover:bg-primary-700 transition-all shadow-md shadow-primary-500/20"
                                 >
-                                    <Star className="w-3.5 h-3.5" />
+                                    <Star className="w-3.5 h-3.5 fill-current" />
                                     Dəyərləndir
                                 </button>
                             )}
                         </div>
                     ) : null}
 
-                    {/* Action Buttons via Framer Motion sliding in on hover */}
                     <AnimatePresence>
                         {isHovered && isPending && (
                             <motion.div
-                                initial={{ opacity: 0, x: 20, width: 0 }}
-                                animate={{ opacity: 1, x: 0, width: "auto" }}
-                                exit={{ opacity: 0, x: 10, width: 0 }}
-                                transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                                className="flex items-center gap-2 overflow-hidden"
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: 10 }}
+                                className="flex items-center gap-2"
                             >
                                 <motion.button
                                     onClick={handleCancel}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="flex items-center justify-center w-9 h-9 rounded-full bg-red-100 text-red-600 dark:bg-red-500/10 dark:text-red-400 border border-red-200 dark:border-red-500/20 hover:bg-red-200 dark:hover:bg-red-500/20 transition-colors"
+                                    className="flex items-center justify-center w-10 h-10 rounded-full bg-red-50 text-red-600 border border-red-200 hover:bg-red-600 hover:text-white transition-all shadow-sm"
                                     title="Ləğv et"
                                 >
                                     <X className="w-5 h-5" />
@@ -214,7 +209,7 @@ export function ReservationCard({ app, role, targetName, targetInitial, personLa
                                     onClick={handleComplete}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.9 }}
-                                    className="flex items-center gap-1.5 px-4 h-9 rounded-full bg-green-500 text-white shadow-[0_0_15px_rgba(34,197,94,0.5)] border border-green-400 font-medium tracking-wide hover:bg-green-600 transition-colors"
+                                    className="flex items-center gap-2 px-5 h-10 rounded-full bg-green-600 text-white shadow-lg shadow-green-500/20 font-bold tracking-wide hover:bg-green-700 transition-all"
                                 >
                                     <Check className="w-4 h-4" />
                                     <span>Tamamla</span>
@@ -222,91 +217,87 @@ export function ReservationCard({ app, role, targetName, targetInitial, personLa
                             </motion.div>
                         )}
                     </AnimatePresence>
-
-                    {/* Interactive Review Modal */}
-                    <AnimatePresence>
-                        {isReviewModalOpen && (
-                            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                                <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    onClick={() => setIsReviewModalOpen(false)}
-                                    className="absolute inset-0 bg-black/60 backdrop-blur-xl"
-                                />
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.85, y: 20 }}
-                                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                                    exit={{ opacity: 0, scale: 0.85, y: 20 }}
-                                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                                    className="relative w-full max-w-md bg-zinc-950/90 border border-white/10 rounded-[2rem] p-6 md:p-8 shadow-2xl overflow-hidden"
-                                >
-                                    <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-
-                                    <div className="relative z-10 flex items-center justify-between mb-6 border-b border-white/5 pb-4">
-                                        <h3 className="text-xl font-bold flex items-center gap-2 text-white">
-                                            <Star className="w-5 h-5 text-indigo-400" />
-                                            Xidməti Dəyərləndirin
-                                        </h3>
-                                        <button
-                                            onClick={() => setIsReviewModalOpen(false)}
-                                            className="p-2 rounded-full bg-white/5 border border-white/10 text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
-                                        >
-                                            <X className="w-4 h-4" />
-                                        </button>
-                                    </div>
-
-                                    <form onSubmit={handleReviewSubmit} className="relative z-10 flex flex-col gap-6">
-                                        <div className="flex flex-col items-center py-5 bg-black/40 border border-white/5 rounded-2xl shadow-inner">
-                                            <p className="text-zinc-400 font-semibold text-sm mb-3">Xidmətdən razı qaldınız?</p>
-                                            <div className="flex items-center gap-2" onMouseLeave={() => setHoverRating(0)}>
-                                                {[1, 2, 3, 4, 5].map((star) => (
-                                                    <button
-                                                        key={`star-${star}`}
-                                                        type="button"
-                                                        onClick={() => setRating(star)}
-                                                        onMouseEnter={() => setHoverRating(star)}
-                                                        className="focus:outline-none transition-transform hover:scale-110 active:scale-90"
-                                                    >
-                                                        <Star
-                                                            className={`w-9 h-9 transition-colors duration-200 ${(hoverRating || rating) >= star
-                                                                    ? "fill-yellow-500 text-yellow-500 drop-shadow-[0_0_10px_rgba(234,179,8,0.5)]"
-                                                                    : "text-zinc-600"
-                                                                }`}
-                                                        />
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        </div>
-
-                                        <div className="flex flex-col gap-2">
-                                            <label className="text-xs font-semibold text-zinc-400 uppercase tracking-wider flex items-center gap-1.5 ml-1">
-                                                <MessageSquare className="w-3.5 h-3.5" /> Əlavə Rəy (İstəyə bağlı)
-                                            </label>
-                                            <textarea
-                                                rows={3}
-                                                placeholder="Xidmət barədə öz fikirlərini və təcrübəni qeyd et..."
-                                                value={reviewComment}
-                                                onChange={(e) => setReviewComment(e.target.value)}
-                                                className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none text-white transition-all resize-none shadow-inner"
-                                            />
-                                        </div>
-
-                                        <button
-                                            type="submit"
-                                            disabled={isSubmittingReview || rating === 0}
-                                            className="w-full h-12 flex items-center justify-center gap-2 font-bold bg-indigo-500 text-white rounded-xl shadow-[0_0_15px_rgba(99,102,241,0.3)] hover:shadow-[0_0_25px_rgba(99,102,241,0.5)] hover:bg-indigo-600 transition-all hover:-translate-y-1 disabled:opacity-50 disabled:hover:translate-y-0 disabled:cursor-not-allowed mt-2"
-                                        >
-                                            {isSubmittingReview ? <Loader2 className="w-5 h-5 animate-spin" /> : "Rəyi Göndər"}
-                                        </button>
-                                    </form>
-                                </motion.div>
-                            </div>
-                        )}
-                    </AnimatePresence>
-
                 </div>
             </div>
+            <AnimatePresence>
+                {isReviewModalOpen && (
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsReviewModalOpen(false)}
+                            className="absolute inset-0 bg-black/40 backdrop-blur-md"
+                        />
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                            className="relative w-full max-w-md bg-background border border-border rounded-[2.5rem] p-8 shadow-2xl overflow-hidden"
+                        >
+                            <div className="relative z-10 flex items-center justify-between mb-8">
+                                <h3 className="text-2xl font-black text-foreground flex items-center gap-3">
+                                    <div className="p-2 bg-primary-500/10 rounded-xl">
+                                        <Star className="w-6 h-6 text-primary-500 fill-primary-500" />
+                                    </div>
+                                    Dəyərləndir
+                                </h3>
+                                <button
+                                    onClick={() => setIsReviewModalOpen(false)}
+                                    className="p-2 rounded-full bg-secondary hover:bg-secondary/80 transition-colors"
+                                >
+                                    <X className="w-5 h-5" />
+                                </button>
+                            </div>
+
+                            <form onSubmit={handleReviewSubmit} className="relative z-10 space-y-6">
+                                <div className="flex flex-col items-center py-6 bg-primary-50/50 dark:bg-primary-950/10 rounded-3xl border border-primary-500/10">
+                                    <p className="text-foreground/60 font-bold text-sm mb-4 uppercase tracking-widest">Xidmət keyfiyyəti?</p>
+                                    <div className="flex items-center gap-2" onMouseLeave={() => setHoverRating(0)}>
+                                        {[1, 2, 3, 4, 5].map((star) => (
+                                            <button
+                                                key={`star-${star}`}
+                                                type="button"
+                                                onClick={() => setRating(star)}
+                                                onMouseEnter={() => setHoverRating(star)}
+                                                className="focus:outline-none transition-transform hover:scale-125 active:scale-90"
+                                            >
+                                                <Star
+                                                    className={`w-10 h-10 transition-all duration-200 ${(hoverRating || rating) >= star
+                                                        ? "fill-primary-500 text-primary-500 drop-shadow-[0_0_8px_rgba(197,160,89,0.5)]"
+                                                        : "text-zinc-300 dark:text-zinc-700"
+                                                        }`}
+                                                />
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-xs font-black text-primary-600 uppercase tracking-[0.2em] ml-2 flex items-center gap-2">
+                                        <MessageSquare className="w-4 h-4" /> Rəyiniz
+                                    </label>
+                                    <textarea
+                                        rows={3}
+                                        placeholder="Təcrübənizi bizimlə bölüşün..."
+                                        value={reviewComment}
+                                        onChange={(e) => setReviewComment(e.target.value)}
+                                        className="w-full px-5 py-4 bg-secondary border border-border rounded-2xl text-sm focus:ring-2 focus:ring-primary-500 focus:outline-none text-foreground transition-all resize-none"
+                                    />
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    disabled={isSubmittingReview || rating === 0}
+                                    className="w-full h-14 flex items-center justify-center gap-3 font-black bg-primary-600 text-white rounded-2xl shadow-xl shadow-primary-500/20 hover:bg-primary-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    {isSubmittingReview ? <Loader2 className="w-6 h-6 animate-spin" /> : "TƏSDİQLƏ"}
+                                </button>
+                            </form>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
         </motion.div>
     );
 }

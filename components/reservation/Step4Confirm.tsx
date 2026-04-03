@@ -39,7 +39,7 @@ export function Step4Confirm({ data, onConfirm, isSubmitting }: Step4ConfirmProp
             </div>
 
             <div className="flex flex-col gap-0 rounded-2xl border border-border/60 bg-background shadow-xs overflow-hidden">
-                {/* Service Info */}
+
                 <div className="flex items-start gap-4 p-5 sm:p-6 border-b border-border/40">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-500">
                         <Scissors className="h-6 w-6" />
@@ -54,7 +54,6 @@ export function Step4Confirm({ data, onConfirm, isSubmitting }: Step4ConfirmProp
                     </div>
                 </div>
 
-                {/* Professional Info */}
                 <div className="flex items-center gap-4 p-5 sm:p-6 border-b border-border/40 bg-black/5 dark:bg-white/5">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-zinc-200 dark:bg-zinc-800">
                         {professional.profileImageUrl ? (

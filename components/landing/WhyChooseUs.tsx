@@ -47,9 +47,9 @@ export function WhyChooseUs() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:border-primary-500/50 transition-colors"
+                            className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:border-primary-500/50 transition-colors shadow-sm"
                         >
-                            <div className="mb-6 p-4 bg-primary-50 dark:bg-primary-950/30 rounded-full">
+                            <div className="mb-6 p-4 bg-[#352514] dark:bg-[#332414] rounded-full shadow-md">
                                 {feature.icon}
                             </div>
                             <h3 className="text-xl font-bold text-foreground mb-3">{feature.title}</h3>

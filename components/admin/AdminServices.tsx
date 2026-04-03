@@ -24,7 +24,6 @@ export function AdminServices({ services, setServices }: AdminServicesProps) {
     const [editingService, setEditingService] = useState<Service | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Silmə əməliyyatı
     const handleDelete = async (id: number) => {
         if (!confirm("Bu xidməti silmək istədiyinizə əminsiniz?")) return;
         
@@ -37,7 +36,6 @@ export function AdminServices({ services, setServices }: AdminServicesProps) {
         }
     };
 
-    // Redaktə əməliyyatı
     const handleEdit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!editingService) return;

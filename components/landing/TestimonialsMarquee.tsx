@@ -21,7 +21,6 @@ export function TestimonialsMarquee() {
             </div>
 
             <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-                {/* Left/Right Fading Edges */}
                 <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
                 <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
 
