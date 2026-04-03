@@ -118,7 +118,7 @@ export function ReservationCard({ app, role, targetName, targetInitial, personLa
             transition={{ duration: 0.3, ease: "easeOut" }}
             onHoverStart={() => setIsHovered(true)}
             onHoverEnd={() => setIsHovered(false)}
-            className="relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-6 bg-zinc-50 dark:bg-zinc-900/80 backdrop-blur-xl border border-zinc-200 dark:border-white/5 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(255,255,255,0.02)] hover:shadow-2xl hover:border-zinc-300 dark:hover:border-white/10 transition-all duration-500 z-10"
+            className="relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-6 bg-card backdrop-blur-xl border border-border rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(255,255,255,0.02)] hover:shadow-2xl hover:border-border/80 transition-all duration-500 z-10"
         >
             {/* Subtle inner light reflection */}
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 dark:via-white/10 to-transparent" />

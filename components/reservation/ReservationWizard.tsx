@@ -103,7 +103,7 @@ export function ReservationWizard() {
             {/* Stepper Header */}
             <div className="mb-12">
                 <div className="flex items-center justify-between relative">
-                    <div className="absolute left-0 top-1/2 -z-10 h-0.5 w-full -translate-y-1/2 bg-zinc-200 dark:bg-zinc-800" />
+                    <div className="absolute left-0 top-1/2 -z-10 h-0.5 w-full -translate-y-1/2 bg-border" />
                     <div
                         className="absolute left-0 top-1/2 -z-10 h-0.5 -translate-y-1/2 bg-primary-500 transition-all duration-500 ease-in-out"
                         style={{ width: `${((currentStep - 1) / 3) * 100}%` }}
@@ -120,7 +120,7 @@ export function ReservationWizard() {
                                         flex h-10 w-10 items-center justify-center rounded-full border-2 text-sm font-semibold transition-colors duration-300
                                         ${isActive ? 'border-primary-500 bg-background text-primary-600 dark:text-primary-500' : ''}
                                         ${isCompleted ? 'border-primary-500 bg-primary-500 text-white' : ''}
-                                        ${!isActive && !isCompleted ? 'border-zinc-200 bg-background text-zinc-400 dark:border-zinc-800' : ''}
+                                        ${!isActive && !isCompleted ? 'border-border bg-background text-foreground/40' : ''}
                                     `}
                                 >
                                     {isCompleted ? (

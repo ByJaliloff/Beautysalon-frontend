@@ -13,7 +13,7 @@ const testimonials = [
 
 export function TestimonialsMarquee() {
     return (
-        <section className="py-24 bg-zinc-50 dark:bg-zinc-950/50 w-full overflow-hidden">
+        <section className="py-24 bg-background w-full overflow-hidden">
             <div className="container mx-auto px-4 max-w-7xl sm:px-6 lg:px-8 mb-12">
                 <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-center">
                     Müştərilərimiz Nə Deyir?
@@ -22,8 +22,8 @@ export function TestimonialsMarquee() {
 
             <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
                 {/* Left/Right Fading Edges */}
-                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-zinc-50 dark:from-zinc-950 to-transparent z-10" />
-                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-zinc-50 dark:from-zinc-950 to-transparent z-10" />
+                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
+                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
 
                 <div className="group flex overflow-hidden p-2 gap-6 w-full">
                     <motion.div
@@ -34,7 +34,7 @@ export function TestimonialsMarquee() {
                         {[...testimonials, ...testimonials].map((t, idx) => (
                             <div
                                 key={idx}
-                                className="w-[350px] shrink-0 rounded-2xl border border-border bg-white dark:bg-background/80 p-8 shadow-sm backdrop-blur-md"
+                                className="w-[350px] shrink-0 rounded-2xl border border-border bg-card p-8 shadow-sm backdrop-blur-md"
                             >
                                 <div className="flex text-yellow-500 mb-4">
                                     {[...Array(5)].map((_, i) => (

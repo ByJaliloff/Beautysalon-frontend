@@ -18,8 +18,6 @@ export function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
     const [isAuthOpen, setIsAuthOpen] = React.useState(false);
     const [authView, setAuthView] = React.useState<"login" | "register">("login");
-
-    // Auth State-ləri
     const [isLoggedIn, setIsLoggedIn] = React.useState(false);
     const [userRole, setUserRole] = React.useState<string | null>(null);
 
@@ -28,7 +26,6 @@ export function Navbar() {
         if (token) {
             setIsLoggedIn(true);
             try {
-                // JWT Token-i Frontend-də oxumaq (Deşifrə etmək)
                 const base64Url = token.split(".")[1];
                 const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
                 const jsonPayload = decodeURIComponent(
@@ -38,7 +35,7 @@ export function Navbar() {
                         .join("")
                 );
                 const decodedToken = JSON.parse(jsonPayload);
-                setUserRole(decodedToken.role); // 'admin', 'customer', və ya 'worker'
+                setUserRole(decodedToken.role);
             } catch (error) {
                 console.error("Token oxunarkən xəta baş verdi", error);
             }
@@ -60,24 +57,26 @@ export function Navbar() {
 
     return (
         <>
-            <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
+            {/* Arxa fonu tam təyin etdik: Açığ rejimdə ağ/95%, Qaranlıq rejimdə tünd/95% */}
+            <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-md shadow-sm">
                 <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                     {/* Logo */}
                     <div className="flex items-center gap-2">
                         <Link href="/" className="flex items-center space-x-2">
-                            <span className="text-xl font-bold tracking-tight text-primary-600 dark:text-primary-500">
+                            <span className="text-xl font-bold tracking-tight text-primary-600 dark:text-primary-400">
                                 Gözəllik Salonu
                             </span>
                         </Link>
                     </div>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center gap-6">
+                    <nav className="hidden md:flex items-center gap-8">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+                                /* Yazı rəngini xüsusi təyin etdik ki fonla heç vaxt qarışmasın */
+                                className="text-sm font-semibold text-foreground/80 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                             >
                                 {link.name}
                             </Link>
@@ -105,17 +104,17 @@ export function Navbar() {
                                         </Button>
                                     </Link>
                                 )}
-                                <Button size="sm" variant="outline" className="gap-2 border-red-200 text-red-500 hover:bg-red-50 hover:text-red-600 dark:border-red-900/30 dark:hover:bg-red-900/20" onClick={handleLogout}>
+                                <Button size="sm" variant="outline" className="gap-2 border-red-200 text-red-600 hover:bg-red-50 dark:border-red-900/50 dark:text-red-400 dark:hover:bg-red-900/20" onClick={handleLogout}>
                                     <LogOut className="w-4 h-4" />
                                     Çıxış
                                 </Button>
                             </div>
                         ) : (
                             <div className="flex items-center gap-2 border-l border-zinc-200 pl-4 dark:border-zinc-800">
-                                <Button variant="ghost" size="sm" onClick={() => openAuth("login")}>
+                                <Button variant="ghost" size="sm" className="text-foreground hover:bg-black/5 dark:hover:bg-white/5" onClick={() => openAuth("login")}>
                                     Giriş
                                 </Button>
-                                <Button size="sm" onClick={() => openAuth("register")}>
+                                <Button size="sm" className="bg-primary-600 hover:bg-primary-700 text-white" onClick={() => openAuth("register")}>
                                     Qeydiyyat
                                 </Button>
                             </div>
@@ -128,40 +127,40 @@ export function Navbar() {
                         <Button
                             variant="ghost"
                             size="sm"
-                            className="w-9 h-9 p-0"
+                            className="w-9 h-9 p-0 text-foreground"
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         >
-                            {isMobileMenuOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
+                            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                         </Button>
                     </div>
                 </div>
 
                 {/* Mobile Menu */}
                 {isMobileMenuOpen && (
-                    <div className="md:hidden border-b border-border/40 bg-background px-4 py-4 shadow-sm">
+                    <div className="md:hidden border-b border-border bg-background px-4 py-4 shadow-lg">
                         <nav className="flex flex-col space-y-4">
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className="text-sm font-medium text-foreground/80 hover:text-foreground"
+                                    className="text-base font-semibold text-foreground/90 hover:text-primary-600"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     {link.name}
                                 </Link>
                             ))}
-                            <div className="pt-4 flex flex-col gap-2 border-t border-zinc-200 dark:border-zinc-800">
+                            <div className="pt-4 flex flex-col gap-2 border-t border-border">
                                 {isLoggedIn ? (
                                     <>
                                         {userRole === "admin" ? (
                                             <Link href="/admin" onClick={() => setIsMobileMenuOpen(false)}>
-                                                <Button variant="outline" className="w-full justify-center gap-2 text-primary-600">
+                                                <Button variant="outline" className="w-full justify-center gap-2 text-primary-600 border-primary-200">
                                                     <ShieldCheck className="w-4 h-4" /> Admin Panel
                                                 </Button>
                                             </Link>
                                         ) : (
                                             <Link href="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
-                                                <Button variant="outline" className="w-full justify-center gap-2 text-primary-600">
+                                                <Button variant="outline" className="w-full justify-center gap-2 text-primary-600 border-primary-200">
                                                     <LayoutDashboard className="w-4 h-4" /> Dashboard
                                                 </Button>
                                             </Link>
@@ -172,10 +171,10 @@ export function Navbar() {
                                     </>
                                 ) : (
                                     <>
-                                        <Button variant="outline" className="w-full justify-center" onClick={() => openAuth("login")}>
+                                        <Button variant="outline" className="w-full justify-center border-border" onClick={() => openAuth("login")}>
                                             Giriş
                                         </Button>
-                                        <Button className="w-full justify-center" onClick={() => openAuth("register")}>
+                                        <Button className="w-full justify-center bg-primary-600 text-white hover:bg-primary-700" onClick={() => openAuth("register")}>
                                             Qeydiyyat
                                         </Button>
                                     </>

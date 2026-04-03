@@ -133,21 +133,21 @@ export function AdminServices({ services, setServices }: AdminServicesProps) {
                             <form onSubmit={handleEdit} className="flex flex-col gap-4">
                                 <div>
                                     <label className="block text-xs font-semibold text-foreground/60 mb-1.5 uppercase">Xidmətin Adı</label>
-                                    <input required type="text" value={editingService.name} onChange={(e) => setEditingService({...editingService, name: e.target.value})} className="w-full h-12 px-4 bg-zinc-50 dark:bg-zinc-900 border border-border/60 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all" />
+                                    <input required type="text" value={editingService.name} onChange={(e) => setEditingService({...editingService, name: e.target.value})} className="w-full h-12 px-4 bg-background border border-border/60 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all" />
                                 </div>
                                 <div className="flex gap-4">
                                     <div className="flex-1">
                                         <label className="block text-xs font-semibold text-foreground/60 mb-1.5 uppercase">Qiymət (AZN)</label>
-                                        <input required type="number" min="0" value={editingService.price} onChange={(e) => setEditingService({...editingService, price: Number(e.target.value)})} className="w-full h-12 px-4 bg-zinc-50 dark:bg-zinc-900 border border-border/60 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all" />
+                                        <input required type="number" min="0" value={editingService.price} onChange={(e) => setEditingService({...editingService, price: Number(e.target.value)})} className="w-full h-12 px-4 bg-background border border-border/60 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all" />
                                     </div>
                                     <div className="flex-1">
                                         <label className="block text-xs font-semibold text-foreground/60 mb-1.5 uppercase">Müddət (Dəq)</label>
-                                        <input required type="number" min="5" step="5" value={editingService.durationInMinutes} onChange={(e) => setEditingService({...editingService, durationInMinutes: Number(e.target.value)})} className="w-full h-12 px-4 bg-zinc-50 dark:bg-zinc-900 border border-border/60 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all" />
+                                        <input required type="number" min="5" step="5" value={editingService.durationInMinutes} onChange={(e) => setEditingService({...editingService, durationInMinutes: Number(e.target.value)})} className="w-full h-12 px-4 bg-background border border-border/60 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all" />
                                     </div>
                                 </div>
                                 <div>
                                     <label className="block text-xs font-semibold text-foreground/60 mb-1.5 uppercase">Təsvir</label>
-                                    <textarea required rows={3} value={editingService.description} onChange={(e) => setEditingService({...editingService, description: e.target.value})} className="w-full px-4 py-3 bg-zinc-50 dark:bg-zinc-900 border border-border/60 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all resize-none" />
+                                    <textarea required rows={3} value={editingService.description} onChange={(e) => setEditingService({...editingService, description: e.target.value})} className="w-full px-4 py-3 bg-background border border-border/60 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all resize-none" />
                                 </div>
                                 <button type="submit" disabled={isSubmitting} className="w-full h-12 mt-2 flex items-center justify-center gap-2 font-bold bg-blue-500 text-white rounded-xl shadow-md hover:bg-blue-600 transition-all disabled:opacity-50">
                                     {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : "Yadda Saxla"}

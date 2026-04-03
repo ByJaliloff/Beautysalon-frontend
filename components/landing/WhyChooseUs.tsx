@@ -47,7 +47,7 @@ export function WhyChooseUs() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-zinc-50 dark:bg-zinc-900/50 hover:border-primary-500/50 transition-colors"
+                            className="flex flex-col items-center text-center p-8 rounded-2xl border border-border bg-card hover:border-primary-500/50 transition-colors"
                         >
                             <div className="mb-6 p-4 bg-primary-50 dark:bg-primary-950/30 rounded-full">
                                 {feature.icon}

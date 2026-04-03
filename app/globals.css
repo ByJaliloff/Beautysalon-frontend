@@ -21,14 +21,12 @@
 
 @layer base {
 
-  /* LIGHT MODE: Premium Lüks (Təmiz Ağ, Mütləq Qara və Şampan Qızılı) */
+  /* LIGHT MODE: Zərif və İsti İşıqlı Rejim (Soft Light) */
   :root {
-    --background: #FFFFFF;
-    /* Tam təmiz premium ağ */
-    --foreground: #000000;
-    /* Mətn üçün mütləq Qara */
-    --card: #FFFFFF;
-    --border: #EAE7E2;
+    --background: #FCFBF8; /* Göz yormayan, çox yüngül isti krem/sümük rəngi */
+    --foreground: #292524; /* Mütləq qara əvəzinə, lüks görünən tünd qəhvəyi/boz */
+    --card: #FFFFFF; /* Kartlar tam ağ olsun ki, krem fonun üzərində zərif seçilsin */
+    --border: #E8E4DD; /* Fonla ahəngdar olan yumşaq sərhəd rəngi */
 
     /* Zərif Şampan Qızılı Palitra */
     --primary-50: #fbf9f4;
@@ -36,38 +34,33 @@
     --primary-200: #ead9b9;
     --primary-300: #dfc494;
     --primary-400: #ceaa65;
-    --primary-500: #C5A059;
-    /* Əsas Premium Şampan */
+    --primary-500: #C5A059; /* Əsas Premium Şampan */
     --primary-600: #ab8542;
-    /* Hover (üzərinə gələndə) */
     --primary-700: #886532;
     --primary-800: #71522e;
     --primary-900: #5c4428;
     --primary-950: #352514;
   }
 
-  /* DARK MODE: İsti Kömür və Açıq Bej */
+  /* DARK MODE: İsti və Premium Kömür çalarları */
   .dark {
-    --background: #111111;
-    /* Çox tünd lüks qara */
-    --foreground: #FAFAFA;
-    /* Yumşaq ağ */
-    --card: #1A1A1A;
-    --border: #2A2A2A;
+    --background: #12100E; 
+    --foreground: #EAE7E2; 
+    --card: #1C1917; 
+    --border: #292524; 
 
     /* Qaranlıqda parlayan zərif Qızılı */
-    --primary-50: #fbf9f4;
-    --primary-100: #f5eedf;
-    --primary-200: #ead9b9;
-    --primary-300: #dfc494;
-    --primary-400: #d8ba78;
-    --primary-500: #D4AF37;
-    /* Əsas Premium Qızılı */
-    --primary-600: #ac8a21;
-    --primary-700: #816415;
-    --primary-800: #695013;
-    --primary-900: #574112;
-    --primary-950: #332407;
+    --primary-50: #fcfaf8;
+    --primary-100: #f6f0e6;
+    --primary-200: #ebddc5;
+    --primary-300: #dec39b;
+    --primary-400: #d0a66d;
+    --primary-500: #C5A059; 
+    --primary-600: #a88443;
+    --primary-700: #8c6a35;
+    --primary-800: #73552f;
+    --primary-900: #5c4428;
+    --primary-950: #332414;
   }
 }
 

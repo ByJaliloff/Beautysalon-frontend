@@ -113,7 +113,7 @@ export default function AdminDashboard() {
     }
 
     return (
-        <div className="min-h-[calc(100vh-4rem)] bg-zinc-50/50 dark:bg-zinc-950/50 pt-8 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
+        <div className="min-h-[calc(100vh-4rem)] bg-background pt-8 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
             <div className="container mx-auto max-w-6xl relative z-10 flex flex-col">
 
                 {/* --- HEADER & TABS --- */}
@@ -244,7 +244,7 @@ export default function AdminDashboard() {
                                                 <Tooltip
                                                     contentStyle={{ backgroundColor: "rgba(0,0,0,0.85)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "1rem", color: "#fff", backdropFilter: "blur(10px)" }}
                                                     itemStyle={{ color: "#34d399", fontWeight: "bold" }}
-                                                    formatter={(value: number) => [`${value} AZN`, "Gəlir"]}
+                                                    formatter={(value: any) => [`${value} AZN`, "Gəlir"]}
                                                     labelStyle={{ color: "rgba(255,255,255,0.6)", marginBottom: "4px" }}
                                                 />
                                                 <Area

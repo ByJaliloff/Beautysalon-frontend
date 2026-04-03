@@ -98,7 +98,7 @@ export function Step2Professional({ selectedProfessional, onSelect }: Step2Profe
                                 relative flex flex-col p-6 rounded-[2rem] border transition-all duration-300 cursor-pointer overflow-hidden backdrop-blur-xl group
                                 ${isSelected
                                     ? "bg-primary-50 dark:bg-primary-500/10 border-primary-500 shadow-[0_0_25px_rgba(234,179,8,0.2)]"
-                                    : "bg-background/80 border-border/60 hover:shadow-xl hover:border-white/20 dark:hover:bg-white/[0.04]"}
+                                    : "bg-card border-border hover:shadow-xl hover:border-white/20 dark:hover:bg-white/[0.04]"}
                             `}
                         >
                             {/* Antigravity glow effect on hover */}
@@ -122,7 +122,7 @@ export function Step2Professional({ selectedProfessional, onSelect }: Step2Profe
                             )}
 
                             <div className="flex items-start gap-4 relative z-10 w-full">
-                                <div className="h-16 w-16 rounded-full bg-zinc-100 dark:bg-zinc-800 border-[3px] border-white dark:border-zinc-700/50 overflow-hidden flex-shrink-0 shadow-inner group-hover:border-primary-200 dark:group-hover:border-primary-500/30 transition-colors">
+                                <div className="h-16 w-16 rounded-full bg-background border-[3px] border-border overflow-hidden flex-shrink-0 shadow-inner group-hover:border-primary-200 dark:group-hover:border-primary-500/30 transition-colors">
                                     {prof.profileImageUrl ? (
                                         <img
                                             src={prof.profileImageUrl.startsWith('http') ? prof.profileImageUrl : `http://localhost:3001/${prof.profileImageUrl}`}

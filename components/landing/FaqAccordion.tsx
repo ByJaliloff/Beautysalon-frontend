@@ -31,7 +31,7 @@ export function FaqAccordion() {
     };
 
     return (
-        <section id="faq" className="py-24 bg-zinc-50 dark:bg-zinc-950/50">
+        <section id="faq" className="py-24 bg-background">
             <div className="container mx-auto px-4 max-w-3xl sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
@@ -50,7 +50,7 @@ export function FaqAccordion() {
                             <motion.div
                                 key={idx}
                                 initial={false}
-                                className={`overflow-hidden rounded-2xl border transition-colors ${isOpen ? 'border-primary-500/50 bg-background shadow-xs' : 'border-border bg-background hover:bg-zinc-50 dark:hover:bg-zinc-900/50'}`}
+                                className={`overflow-hidden rounded-2xl border transition-colors ${isOpen ? 'border-primary-500/50 bg-background shadow-xs' : 'border-border bg-background hover:bg-black/5 dark:hover:bg-white/5'}`}
                             >
                                 <button
                                     className="flex w-full items-center justify-between p-6 text-left"

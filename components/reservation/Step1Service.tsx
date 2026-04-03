@@ -88,7 +88,7 @@ useEffect(() => {
                         relative cursor-pointer overflow-hidden rounded-xl border p-5 transition-colors
                         ${isSelected
                                         ? "border-primary-500 bg-primary-50 dark:bg-primary-950/20"
-                                        : "border-border bg-background hover:bg-zinc-50 dark:hover:bg-zinc-900"}
+                                        : "border-border bg-card hover:bg-black/5 dark:hover:bg-white/5"}
                     `}
                             >
                                 <div className="flex flex-col gap-3">

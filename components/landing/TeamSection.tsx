@@ -31,7 +31,7 @@ export function TeamSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: idx * 0.1 }}
-                            className="group relative overflow-hidden rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 border border-border"
+                            className="group relative overflow-hidden rounded-2xl bg-card border border-border"
                         >
                             <div className="aspect-[3/4] overflow-hidden">
                                 {member.img ? (

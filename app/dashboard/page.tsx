@@ -152,7 +152,7 @@ export default function DashboardPage() {
     }
 
     return (
-        <div className="min-h-[calc(100vh-4rem)] bg-zinc-50/50 py-12 px-4 dark:bg-zinc-950/50 sm:px-6 lg:px-8">
+        <div className="min-h-[calc(100vh-4rem)] bg-background py-12 px-4 sm:px-6 lg:px-8">
             <div className="container mx-auto max-w-5xl">
 
                 <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
