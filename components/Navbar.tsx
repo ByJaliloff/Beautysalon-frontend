@@ -111,7 +111,7 @@ export function Navbar() {
                             </div>
                         ) : (
                             <div className="flex items-center gap-2 border-l border-zinc-200 pl-4 dark:border-zinc-800">
-                                <Button variant="ghost" size="sm" className="text-foreground hover:bg-black/5 dark:hover:bg-white/5" onClick={() => openAuth("login")}>
+                                <Button variant="ghost" size="sm" className="font-semibold text-zinc-900 dark:text-zinc-100 hover:bg-black/5 dark:hover:bg-white/5" onClick={() => openAuth("login")}>
                                     Giriş
                                 </Button>
                                 <Button size="sm" className="bg-primary-600 hover:bg-primary-700 text-white" onClick={() => openAuth("register")}>
@@ -171,7 +171,7 @@ export function Navbar() {
                                     </>
                                 ) : (
                                     <>
-                                        <Button variant="outline" className="w-full justify-center border-border" onClick={() => openAuth("login")}>
+                                        <Button variant="outline" className="w-full justify-center font-semibold text-zinc-900 dark:text-zinc-100 border-zinc-200 dark:border-zinc-800 hover:bg-black/5 dark:hover:bg-white/5" onClick={() => openAuth("login")}>
                                             Giriş
                                         </Button>
                                         <Button className="w-full justify-center bg-primary-600 text-white hover:bg-primary-700" onClick={() => openAuth("register")}>

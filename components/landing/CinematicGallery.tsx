@@ -13,7 +13,7 @@ const images = [
 
 export function CinematicGallery() {
     return (
-        <section className="relative py-24 bg-[#0a0505] overflow-hidden">
+        <section className="relative py-24 bg-background overflow-hidden">
             {/* Film Grain Overlay */}
             <div
                 className="pointer-events-none absolute inset-0 z-10 opacity-20 mix-blend-overlay"
@@ -28,10 +28,10 @@ export function CinematicGallery() {
 
             <div className="container relative z-20 mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl font-bold tracking-widest text-[#f5ebd9] uppercase sm:text-4xl drop-shadow-[0_0_15px_rgba(255,100,100,0.3)]">
+                    <h2 className="text-3xl font-bold tracking-widest text-zinc-900 dark:text-[#f5ebd9] uppercase sm:text-4xl drop-shadow-[0_0_15px_rgba(255,100,100,0.3)]">
                         Hisslərin Güzgüsü
                     </h2>
-                    <p className="mt-4 text-sm tracking-widest text-[#d4bca3]/80 uppercase mx-auto">
+                    <p className="mt-4 text-sm tracking-widest text-zinc-600 dark:text-[#d4bca3]/80 uppercase mx-auto">
                         Gözəlliyin Sinematik Anları
                     </p>
                 </div>
